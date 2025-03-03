@@ -2,6 +2,7 @@
 // Supports weights 100-900
 import '@fontsource-variable/inter';
 import "../styles/global.css";
+import NavBar from '../components/NavBar.astro';
 
 interface Props {
 	title: string;
@@ -22,6 +23,7 @@ const { title, description } = Astro.props;
 		<meta name="description" content={description} />
 	</head>
 	<body>
+		<NavBar />
 		<slot />
 	</body>
 </html>
