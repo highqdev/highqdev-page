@@ -1,35 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Description from '../pages/description.astro';
+import AboutUs from '../pages/aboutus.astro';
 ---
 
 <Layout title="HighQ Dev" description="Welcome to HighQ Dev">
-  <div class="flex flex-col sm:w-2/2 md:w-3/4 lg:w-5/6 mx-auto p-10 min-h-screen">
-    <h1 class="text-2xl sm:text-2xl md:text-2xl lg:text-5xl font-bold"> ¿Quiénes somos? </h1>
-    <p class="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7 mt-6" >
-      En <span class="font-bold text-blue-500">HighQDev</span>, somos más que una empresa de desarrollo
-	  de software: somos la <span class="font-bold">familia QDev</span>. No solo desarrollamos software,
-	  creamos el futuro digital a través de soluciones tecnológicas personalizadas, diseño para impulsar 
-	  empresas, optimizar procesos y transformar ideas en realidades escalables y disruptivas.
-    </p>
-	<div class="lg:flex lg:flex-row mt-8 lg:space-x-8">
-      <div class="flex justify-center lg:justify-start w-full lg:w-4/4">
-        <img src="https://i.ibb.co/NdqNwhdc/highqdev-logo.png" class="justify-center sm:w-60 md:w-75 lg:w-full" alt="highqdev-logo" />
-      </div>
-      <div class="flex flex-col">
-        <p class="text-lg sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7" >
-          <span class="text-md font-bold text-black lg:text-3xl"> Un poco de historia </span>
-          <p class="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7 mt-6" >
-            <span>HighQDev </span> inició como un proyecto enfocado en cubrir las necesidades 
-			empresariales de automatización de procesos y optimización de ventas a través de 
-			soluciones tecnológicas.
-          </p>
-          <p class="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7 mt-6" >
-            Desde sus inicios, el equipo tomó decisiones clave que sentaron las bases para la 
-			conformación de un grupo integral, altamente capacitado y comprometido con la innovación
-			tecnológica.
-          </p>
-        </p>
-      </div>
-    </div>
-  </div>
+	<AboutUs />
+	<Description />
 </Layout>
