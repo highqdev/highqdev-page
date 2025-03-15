@@ -2,8 +2,9 @@
 // Supports weights 100-900
 import "@fontsource-variable/inter";
 import "../styles/global.css";
+
 import NavBar from "../Components/NavBar.astro";
-import Carrusel from "../Components/Carrusel.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -26,5 +27,6 @@ const { title, description } = Astro.props;
   <body>
     <NavBar />
     <slot />
+    <Footer />
   </body>
 </html>
