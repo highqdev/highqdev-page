@@ -1,0 +1,121 @@
+---
+import { Image } from "astro:assets";
+
+// Assets
+import logo from "../assets/images/logo.svg";
+import FacebookIcon from "../assets/icons/socialMedia/FacebookIcon.astro";
+import InstagramIcon from "../assets/icons/socialMedia/InstagramIcon.astro";
+import LinkedinIcon from "../assets/icons/socialMedia/LinkedinIcon.astro";
+import PhoneIcon from "../assets/icons/contact/PhoneIcon.astro";
+import MailIcon from "../assets/icons/contact/MailIcon.astro";
+import PinIcon from "../assets/icons/contact/PinIcon.astro";
+---
+
+<footer>
+  <div class="bg-gray-custom py-6 px-6 lg:px-8">
+    <div class="grid grid-flow-row gap-10 sm:grid-cols-2">
+      <section aria-labelledby="social-media">
+        <a href="/" aria-label="HighQDev - Inicio">
+          <Image
+            src={logo}
+            alt="HighQ Logo"
+            loading="lazy"
+            class="w-40 mb-10"
+          />
+        </a>
+        <ul class="flex flex-row gap-4">
+          <li>
+            <a aria-label="Facebook" href="/" target="_blank" rel="noreferrer">
+              <FacebookIcon class="size-7 text-white" />
+            </a>
+          </li>
+          <li>
+            <a aria-label="LinkedIn" href="/" target="_blank" rel="noreferrer">
+              <LinkedinIcon class="size-7 text-white" />
+            </a>
+          </li>
+          <li>
+            <a aria-label="Instagram" href="/" target="_blank" rel="noreferrer">
+              <InstagramIcon class="size-7 text-white" />
+            </a>
+          </li>
+        </ul>
+      </section>
+      <div class="grid grid-flow-row gap-5 lg:grid-cols-2">
+        <section aria-labelledby="contact-info">
+          <h2
+            id="contact-info"
+            class="text-green-custom font-semibold text-lg mb-4"
+          >
+            Información de Contacto
+          </h2>
+          <ul class="flex flex-col gap-4">
+            <li>
+              <a
+                href="tel:+522281470900"
+                class="text-white hover:text-green-custom transition-colors flex items-center gap-2 text-sm"
+              >
+                <PhoneIcon class="size-6 text-inherit" />
+                (+52) 228 14 70 900
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:ventasqdev@gmail.com"
+                class="text-white hover:text-green-custom transition-colors flex items-center gap-2 text-sm"
+              >
+                <MailIcon class="size-6 text-inherit" />
+                ventasqdev@gmail.com
+              </a>
+            </li>
+            <li>
+              <address
+                class="text-white flex items-start gap-2 text-sm not-italic"
+              >
+                <PinIcon class="size-7 text-inherit" />
+                Morelos 21, Col. 24 de Abril Xalapa, Veracruz, México.
+              </address>
+            </li>
+          </ul>
+        </section>
+        <nav aria-labelledby="quick-links">
+          <h2
+            id="quick-links"
+            class="text-green-custom font-semibold text-lg mb-4"
+          >
+            Enlaces Rápidos
+          </h2>
+          <ul class="flex flex-col gap-4">
+            <li>
+              <a
+                href="/"
+                class="text-white hover:text-green-custom transition-colors flex items-center gap-2 text-sm"
+              >
+                Aviso Legal
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                class="text-white hover:text-green-custom transition-colors flex items-center gap-2 text-sm"
+              >
+                Política de Privacidad
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                class="text-white hover:text-green-custom transition-colors flex items-start gap-2 text-sm"
+              >
+                Términos de Servicio
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="bg-blue-custom py-2 px-4 md:px-8 text-white text-center text-sm">
+    <p>&copy; 2025 HighQDev. Todos los derechos reservados.</p>
+  </div>
+</footer>
