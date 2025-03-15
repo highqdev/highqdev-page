@@ -1,0 +1,65 @@
+---
+import img1 from "../assets/images/portadatest.jpg";
+import img2 from "../assets/images/portadatest2.jpg";
+import img3 from "../assets/images/portadatest3.jpg";
+
+const images = [
+  { src: img1.src, text: "Soluciones inovadoras", secondText: "Nuestras soluciones innovadoras cumplen con altos estándares de calidad y permiten alcanzar objetivos estrátegicos de manera eficiente."},
+  { src: img2.src, text: "Software a la medida", secondText:"Nuestro enfoque garantiza que cada sistema se adapta a tus necesidades y contribuye al éxito de tus clientes." },
+  { src: img3.src, text: "Calidad de software", secondText:"Analizamos y evaluamos tu software a fondo para asegurar que cumplan con los estándares más exigentes." }
+];
+---
+
+<section class="w-full mx-auto overflow-hidden flex">
+  <div id="carouselContainer" class="overflow-hidden min-h-screen relative">
+    <div id="carousel" class="flex w-full h-[65vh] min-h-[45vh] max-h[80vh] transition-transform duration-500 ease-in-out">
+      {images.map((img, index) => (
+        <div class="relative w-full h-full flex-shrink-0">
+          <!-- Imagen -->
+          <img src={img.src} class="w-full h-full object-cover" alt={`Slide ${index + 1}`} />
+          <!-- Texto encima de la imagen -->
+          <div class="absolute bottom-10 text-left text-white p-4">
+            <h2 class="text-3xl font-bold">{img.text}</h2>
+              <p class="lg:w-150 sm:text-lg md:text-xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam optio recusandae eos quod. Officia consequuntur, ratione repudiandae numquam vel omnis vero mollitia veritatis voluptate iste assumenda possimus temporibus. Iste, commodi!</p>
+              
+              <button class="mt-5 text-black px-4 py-2 rounded transition transform active:scale-90" 
+              style="background-color: rgba(123, 217, 87, 1);">
+              Me interesa
+              </button>     
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+
+  if (!carousel) return; // Evita errores si el elemento no se encuentra
+
+  const images = carousel.children;
+  const totalImages = images.length;
+
+  function nextSlide() {
+    index = (index + 1) % totalImages; // Ciclo infinito
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  setInterval(nextSlide, 5000); // Cambia cada 3 segundos
+});
+
+</script>
+
+<style>
+  #carousel {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  #carousel > div {
+    flex: 0 0 100%;
+  }
+</style>
