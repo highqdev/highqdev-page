@@ -1,9 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import leftArrow from "../../public/favicon.svg";
-import rightArrow from "../../public/favicon.svg";
 import ServiceCard from "../components/SeviceCard.astro";
+import RightArrowIcon from "../assets/icons/RightArrowIcon.astro";
+import LeftArrowIcon from "../assets/icons/LeftArrowIcon.astro";
 const cards = [
 	{
 		title: "Desarrollo Web",
@@ -55,10 +54,8 @@ const cards = [
 					id="scroll-left"
 					class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white text-black p-2 sm:p-3 rounded-full z-40 border-2 border-gray-100 shadow-sm hover:shadow-md transition-shadow"
 				>
-					<Image
-						src={leftArrow}
+					<LeftArrowIcon
 						alt="icon"
-						loading="eager"
 						class="w-5 h-5 sm:w-6 sm:h-6"
 					/>
 				</button>
@@ -89,16 +86,69 @@ const cards = [
 					id="scroll-right"
 					class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white text-black p-2 sm:p-3 rounded-full z-40 border-2 border-gray-100 shadow-sm hover:shadow-md transition-shadow"
 				>
-					<Image
-						src={rightArrow}
+					<RightArrowIcon
 						alt="icon"
-						loading="eager"
 						class="w-5 h-5 sm:w-6 sm:h-6"
 					/>
 				</button>
 			</div>
 		</div>
 	</section>
+	<section 
+		aria-labelledby="Garantizamos"
+		class="w-full max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8"
+		>
+    <div class="container mx-auto px-8">
+        <h2 
+			class="text-4xl font-bold sm:text-4xl mt-8 sm:mt-10 text-center sm:text-left px-2 sm:px-0"
+			id="Garantizamos"
+			>
+            Garantizamos...
+        </h2>
+        <div class="grid md:grid-cols-2 gap-5">
+            <div class="p-8 mt-4 sm:mt-6">
+                <RightArrowIcon/>
+                <h4 class="font-bold text-xl mt-3">
+                    Automatizacion de recursos empresariales
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    optimizacion de tareas repetitivas mediante software
+                    automatizado, reduciendo costos y mejorando la productividad
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <RightArrowIcon/>
+                <h4 class="font-bold text-xl mt-3">
+                    Automatizacion de recursos empresariales
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    optimizacion de tareas repetitivas mediante software
+                    automatizado, reduciendo costos y mejorando la productividad
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <RightArrowIcon/>
+                <h4 class="font-bold text-xl mt-3">
+                    Automatizacion de recursos empresariales
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    optimizacion de tareas repetitivas mediante software
+                    automatizado, reduciendo costos y mejorando la productividad
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <RightArrowIcon/>
+                <h4 class="font-bold text-xl mt-3">
+                    Automatizacion de recursos empresariales
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    optimizacion de tareas repetitivas mediante software
+                    automatizado, reduciendo costos y mejorando la productividad
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 </Layout>
 
 <script>
