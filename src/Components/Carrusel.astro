@@ -4,53 +4,68 @@ import img2 from "../assets/images/portadatest2.jpg";
 import img3 from "../assets/images/portadatest3.jpg";
 
 const images = [
-  { src: img1.src, text: "Soluciones inovadoras", secondText: "Nuestras soluciones innovadoras cumplen con altos estándares de calidad y permiten alcanzar objetivos estrátegicos de manera eficiente."},
-  { src: img2.src, text: "Software a la medida", secondText:"Nuestro enfoque garantiza que cada sistema se adapta a tus necesidades y contribuye al éxito de tus clientes." },
-  { src: img3.src, text: "Calidad de software", secondText:"Analizamos y evaluamos tu software a fondo para asegurar que cumplan con los estándares más exigentes." }
+  {
+    src: img1.src,
+    text: "Soluciones inovadoras",
+    secondText:
+      "Nuestras soluciones innovadoras cumplen con altos estándares de calidad y permiten alcanzar objetivos estrátegicos de manera eficiente.",
+  },
+  {
+    src: img2.src,
+    text: "Software a la medida",
+    secondText:
+      "Nuestro enfoque garantiza que cada sistema se adapta a tus necesidades y contribuye al éxito de tus clientes.",
+  },
+  {
+    src: img3.src,
+    text: "Calidad de software",
+    secondText:
+      "Analizamos y evaluamos tu software a fondo para asegurar que cumplan con los estándares más exigentes.",
+  },
 ];
 ---
-
 <section class="w-full mx-auto overflow-hidden flex">
-  <div id="carouselContainer" class="overflow-hidden min-h-screen relative">
-    <div id="carousel" class="flex w-full h-[65vh] min-h-[45vh] max-h[80vh] transition-transform duration-500 ease-in-out">
+  <div id="carouselContainer" class="overflow-hidden min-h-screen relative z-10">
+    <div id="carousel" class="flex w-full h-[65vh] sm:h-[75vh] md:h-[85vh] lg:h-[90vh] transition-transform duration-500 ease-in-out">
       {images.map((img, index) => (
-        <div class="relative w-full h-full flex-shrink-0">
+        <div class="relative w-full h-full">
           <!-- Imagen -->
           <img src={img.src} class="w-full h-full object-cover" alt={`Slide ${index + 1}`} />
           <!-- Texto encima de la imagen -->
-          <div class="sm:text-lg md:text-xl absolute bottom-10 text-left text-white p-4">
-            <h2 class="text-3xl font-bold">{img.text}</h2>
-              <p class="lg:w-150 sm:text-lg md:text-xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam optio recusandae eos quod. Officia consequuntur, ratione repudiandae numquam vel omnis vero mollitia veritatis voluptate iste assumenda possimus temporibus. Iste, commodi!</p>
-              
-              <button class="mt-5 text-black px-4 py-2 rounded transition transform active:scale-90" 
+          <div class="absolute bottom-10 left-0 text-white p-4 sm:p-6 md:p-8 lg:p-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">
+              {img.text}
+            </h2>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mb-4 sm:mb-6">
+              {img.secondText}
+            </p>
+            <button class="mt-4 sm:mt-6 text-black px-4 py-2 rounded transition transform active:scale-90 text-sm sm:text-base md:text-lg"
               style="background-color: rgba(123, 217, 87, 1);">
               Me interesa
-              </button>     
+            </button>
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-  let index = 0;
-  const carousel = document.getElementById("carousel");
+    let index = 0;
+    const carousel = document.getElementById("carousel");
 
-  if (!carousel) return; // Evita errores si el elemento no se encuentra
+    if (!carousel) return; // Evita errores si el elemento no se encuentra
 
-  const images = carousel.children;
-  const totalImages = images.length;
+    const images = carousel.children;
+    const totalImages = images.length;
 
-  function nextSlide() {
-    index = (index + 1) % totalImages; // Ciclo infinito
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-  }
+    function nextSlide() {
+      index = (index + 1) % totalImages; // Ciclo infinito
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
 
-  setInterval(nextSlide, 5000); // Cambia cada 3 segundos
-});
-
+    setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+  });
 </script>
 
 <style>

@@ -1,0 +1,89 @@
+---
+import Profile from "../assets/images/fotoProfile.jpg";
+---
+
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold mb-8">
+      Conoce al equipo
+    </h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
+      <!-- Primera fila: 3 integrantes -->
+      <div class="text-center">
+        <img
+          src={Profile.src}
+          alt="Josué David Martinez Gutiérrez"
+          class="w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-2 object-cover"
+        />
+        <h3 class="text-sm sm:text-lg font-semibold">
+          Josué David <br /> Martinez Gutiérrez
+        </h3>
+        <p class="text-gray-600 text-xs sm:text-sm">Director General</p>
+      </div>
+
+      <div class="text-center">
+        <img
+          src={Profile.src}
+          alt="Maricarmen Vázquez Vidal"
+          class="w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-2 object-cover"
+        />
+        <h3 class="text-sm sm:text-lg font-semibold">
+          Maricarmen <br /> Vázquez Vidal
+        </h3>
+        <p class="text-gray-600 text-xs sm:text-sm">
+          Co Fundadora, Directora de Diseño UX/UI
+        </p>
+      </div>
+
+      <div class="text-center">
+        <img
+          src={Profile.src}
+          alt="Darien Alberto Baltazar"
+          class="w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-2 object-cover"
+        />
+        <h3 class="text-sm sm:text-lg font-semibold">
+          Darien Alberto Baltazar
+        </h3>
+        <p class="text-gray-600 text-xs sm:text-sm">
+          Co Fundador, Director de Operaciones
+        </p>
+      </div>
+
+      <!-- Segunda fila: Posicionamiento específico en desktop -->
+      <div
+        class="text-center
+         sm:col-start-1
+         lg:col-start-2 lg:col-end-3
+         lg:row-start-2
+         lg:-translate-x-1/2"
+      >
+        <img
+          src={Profile.src}
+          alt="Christian Filete López"
+          class="w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-2 object-cover"
+        />
+        <h3 class="text-sm sm:text-lg font-semibold">Christian Filete López</h3>
+        <p class="text-gray-600 text-xs sm:text-sm">Director de Frontend</p>
+      </div>
+
+      <div
+        class="text-center
+         sm:col-start-2
+         lg:col-start-2
+         lg:col-end-3
+         lg:row-start-2
+         lg:translate-x-1/2"
+      >
+        <img
+          src={Profile.src}
+          alt="David Vega Tepetla"
+          class="w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-2 object-cover"
+        />
+        <h3 class="text-sm sm:text-lg font-semibold">David Vega Tepetla</h3>
+        <p class="text-gray-600 text-xs sm:text-sm">
+          Director del área de calidad <br />y ciberseguridad
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
