@@ -7,6 +7,8 @@ import NavBar from "../Components/NavBar.astro";
 import Footer from "../Components/Footer.astro";
 import Carrusel from "../Components/Carrusel.astro";
 import Equipo from "../Components/Equipo.astro";
+import AboutUs from "../pages/aboutus.astro";
+import Description from "../pages/description.astro";
 
 interface Props {
   title: string;
@@ -29,6 +31,8 @@ const { title, description } = Astro.props;
   <body>
     <NavBar />
     <Carrusel />
+    <Description />
+    <AboutUs />
     <Equipo />
     <Footer />
   </body>
