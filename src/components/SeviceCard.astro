@@ -1,40 +1,83 @@
 ---
-const cardSize = "w-full max-w-[400px] md:w-[400px] h-[350px] md:h-[450px] rounded-xl";
+import EcomerceIcon from "../assets/icons/card/comerce.astro";
+import UXIcon from "../assets/icons/card/ux.astro";
+import MovilIcon from "../assets/icons/card/movil.astro";
+import WebIcon from "../assets/icons/card/web.astro";
+
+// const iconMap: Record<string, any> = {
+//   Web: Pen,
+//   Movil: Lock,
+//   UX: Gear,
+//   Ecomerce: Clock,
+// };
+
+const iconMap: Record<string, any> = {
+  Web: WebIcon,
+  Movil: MovilIcon,
+  UX: UXIcon,
+  Ecomerce: EcomerceIcon,
+};
+
 interface Props {
+  key: number;
   title: string;
   text: string;
-  pathIcon?: string;
+  icon?: string;
   pathBackground?: string;
 }
 
-const { title, text, pathIcon = "/favicon.svg", pathBackground = "/wallpaper_img.jpg"} = Astro.props;
+const {
+  key,
+  title,
+  text,
+  icon = "Web",
+  pathBackground = "../assets/images/logo.svg",
+} = Astro.props;
+const IconComponent = iconMap[icon];
+const cardSize = "w-full max-w-[400px] md:w-[400px] h-[350px] md:h-[450px] rounded-xl";
 ---
 
-<article class={`relative flex-none ${cardSize}`} aria-labelledby={`card-${title}`}>
+<article
+  id={`${key}`}
+  class={`relative flex-none ${cardSize}`}
+  aria-labelledby={`card-${title}`}
+>
   <div
     class="absolute inset-0 bg-cover bg-center z-0 w-full h-full rounded-2xl"
     style={`background-image: url(${pathBackground});`}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
 
   <div class="group relative block h-full w-full z-20">
     <div class="absolute inset-0 bg-gray-600/80 z-0 rounded-2xl"></div>
     <div
       class="relative flex h-full w-full text-amber-50 transform items-end border-2 border-black transition-transform group-hover:scale-105 rounded-2xl flex-none"
     >
-      <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 hidden sm:block">
-        <img src={pathIcon} alt="Icono" loading="eager" class="h-12 w-12 md:h-16 md:w-16"/>
-        <h3 id={`card-title-${title}`} class="mt-4 text-lg md:text-xl lg:text-2xl font-medium">{title}</h3>
+      <div
+        class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 hidden sm:block"
+      >
+      <IconComponent class="h-12 w-12" />
+        <h3
+          id={`card-title-${title}`}
+          class="mt-4 text-lg md:text-xl lg:text-2xl font-medium"
+        >
+          {title}
+        </h3>
       </div>
-      
+
       <div
         class="border-t-8 border-t-emerald-400 absolute pl-5 pr-5 pt-3 py-3 sm:opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 bg-white/0 backdrop-blur-sm w-full h-full flex-none rounded-xl"
       >
-        <h3 id={`card-title-${title}`} class="mt-4 text-lg md:text-xl lg:text-2xl font-medium">{title}</h3>
+        <h3
+          id={`card-title-${title}`}
+          class="mt-4 text-lg md:text-xl lg:text-2xl font-medium"
+        >
+          {title}
+        </h3>
         <p class="mt-4 h-3/5 text-sm sm:text-base overflow-y-auto">
-            {text}
+          {text}
         </p>
-        <a href="#" class="font-bold mt-5 hover:text-emerald-400 text-sm md:text-base">Haga click para ver mas detalles</a>
       </div>
     </div>
   </div>
