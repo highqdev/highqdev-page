@@ -1,0 +1,140 @@
+---
+import ServiceCard from "../components/SeviceCard.astro";
+import RightArrowIcon from "../assets/icons/sections/RightArrowIcon.astro";
+import LeftArrowIcon from "../assets/icons/sections/LeftArrowIcon.astro";
+const cards = [
+    {
+        title: "Desarrollo Web",
+        text: "Texto de prueba",
+        pathIcon: "Web",
+        pathBackground: "/desarrollo-web.jpg",
+    },
+    {
+        title: "Desarrollo Movil",
+        text: "Texto de prueba",
+        pathIcon: "Movil",
+        pathBackground: "/movil.jpg",
+    },
+    {
+        title: "Diseño UI/UX",
+        text: "Texto de prueba",
+        pathIcon: "UX",
+        pathBackground: "/ui.jpg",
+    },
+    {
+        title: "E-Comerce",
+        text: "Texto de prueba",
+        pathIcon: "Ecomerce",
+        pathBackground: "/comerce.png",
+    },
+];
+---
+
+<section
+    aria-labelledby="Servicios"
+    class="w-full max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 h-fit"
+>
+    <h2
+        id="Servicios"
+        class="text-2xl mt-8 sm:mt-10 text-center sm:text-left px-2 sm:px-0"
+    >
+        Nuestros servicios
+    </h2>
+
+    <div class="relative w-full mt-4 sm:mt-6">
+        <div id="leftButtonContainer" class="hidden sm:block">
+            <div
+                class="hidden sm:block absolute left-0 -ml-5 bg-white/60 backdrop-blur-sm blur-sm h-full w-[120px] z-30 rounded-xl"
+            >
+            </div>
+            <button
+                id="scroll-left"
+                class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white text-black p-2 sm:p-3 rounded-full z-40 border-2 border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+            >
+                <LeftArrowIcon alt="icon" class="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+        </div>
+
+        <div
+            id="carousel"
+            class="flex gap-x-3 sm:gap-x-4 md:gap-x-6 mt-4 p-2 sm:p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory md:overflow-hidden :no-scrollbar"
+        >
+            {
+                cards.map((info, index) => (
+                    <ServiceCard
+                        key={index}
+                        title={info.title}
+                        text={info.text}
+                        icon={info.pathIcon}
+                        pathBackground={info.pathBackground}
+                    />
+                ))
+            }
+        </div>
+
+        <div id="rightButtonContainer" class="hidden sm:block">
+            <div
+                class="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 -mr-2 bg-white/60 backdrop-blur-xs blur-xs h-full w-30 z-30"
+            >
+            </div>
+            <button
+                id="scroll-right"
+                class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white text-black p-2 sm:p-3 rounded-full z-40 border-2 border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+            >
+                <RightArrowIcon alt="icon" class="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    let scrollContainer = document.getElementById("carousel");
+    let leftButton = document.getElementById("leftButtonContainer");
+    let rightButton = document.getElementById("rightButtonContainer");
+
+    document
+        .getElementById("scroll-left")
+        ?.addEventListener("click", () => scroll(-340, 1000));
+    document
+        .getElementById("scroll-right")
+        ?.addEventListener("click", () => scroll(340, 1000));
+
+    scrollContainer?.addEventListener("scroll", () => updateButtonVisibility());
+
+    const scroll = (offset: number, duration: number) => {
+        if (!scrollContainer) return;
+
+        let startTime: number | null = null;
+        const startScroll = scrollContainer.scrollLeft;
+        const targetScroll = startScroll + offset;
+
+        const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            const easeOutQuad = progress * (2 - progress);
+            scrollContainer!.scrollLeft =
+                startScroll + (targetScroll - startScroll) * easeOutQuad;
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const updateButtonVisibility = () => {
+        if (!scrollContainer || !leftButton || !rightButton) return;
+
+        const maxScrollLeft: number =
+            scrollContainer.scrollWidth - scrollContainer.clientWidth;
+
+        leftButton.style.display =
+            scrollContainer.scrollLeft <= 100 ? "none" : "block";
+        rightButton.style.display =
+            scrollContainer.scrollLeft >= maxScrollLeft ? "none" : "block";
+    };
+    updateButtonVisibility();
+</script>

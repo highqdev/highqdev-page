@@ -1,0 +1,75 @@
+---
+import Clock from "../assets/icons/sections/Clock.astro"
+import Gear from "../assets/icons/sections/Gear.astro"
+import Lock from "../assets/icons/sections/Lock.astro"
+import Pen from "../assets/icons/sections/Pen.astro"
+
+const subSections = [
+    {
+        title: ""
+        
+    },
+    {}
+]
+---
+<section 
+		aria-labelledby="Garantizamos"
+		class="w-full max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8"
+		>
+    <div class="container mx-auto px-8">
+        <h2 
+			class="text-4xl font-bold sm:text-4xl mt-8 sm:mt-10 text-center sm:text-left px-2 sm:px-0"
+			id="Garantizamos"
+			>
+            Garantizamos...
+        </h2>
+        <div class="grid md:grid-cols-2 gap-5">
+            <div class="p-8 mt-4 sm:mt-6">
+                <Gear class="h-14 w-14"/>
+                <h4 class="font-bold text-xl mt-3">
+                    Automatizacion de recursos empresariales
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    Optimización de tareas repetitívas mediante software
+                    automatizado, reduciendo costos y mejorando la productividad.
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <Lock class="h-14 w-14"/>
+                <h4 class="font-bold text-xl mt-3">
+                  Seguridad y protección de datos  
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    Implementamos protocolos avanzados para proteger la
+                    información de tu empresa y clientes, asegurando la
+                    integridad y confidencialidad de tus datos.
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <Pen class="h-14 w-14"/>
+                <h4 class="font-bold text-xl mt-3">
+                    Diseño Moderno y Optimizado
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    Páginas web profecionales con un diseño limpio, intuitivo y
+                    rápido, optimizadas para cargar en menos de 3 segundos.
+                </p>
+            </div>
+            <div class="p-8 mt-4 sm:mt-6">
+                <Clock class="h-14 w-14"/>
+                <h4 class="font-bold text-xl mt-3">
+                    Soporte Técnico 24/7
+                </h4>
+                <p class="text-gray-500 text-lg mt-4">
+                    Atención y asistencia técnica en cualquier momento para
+                    garantizar el correcto funcionamiento de tu sitio web o 
+                    Software.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+</style>
