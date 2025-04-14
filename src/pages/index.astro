@@ -1,9 +1,18 @@
 ---
+import Carrousel from "../sections/Galeria.astro";
 import Layout from "../layouts/Layout.astro";
-
+import Beneficios from "../sections/Beneficios.astro";
+import Contacto from "../sections/Contacto.astro";
+import Elegirnos from "../sections/Elegirnos.astro";
+import Servicios from "../sections/Servicios.astro";
+import Descripcion from "../sections/Descripcion.astro";
 ---
 
-
 <Layout title="HighQ Dev" description="Welcome to HighQ Dev">
-	
+	<Carrousel/>
+	<Descripcion/>
+	<Servicios/> 
+	<Elegirnos/>
+	<Beneficios/>
+	<Contacto/>
 </Layout>

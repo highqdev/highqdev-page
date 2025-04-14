@@ -7,7 +7,6 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import Carrusel from "../components/Carrusel.astro";
 import Equipo from "../components/Equipo.astro";
-import AboutUs from "../pages/aboutus.astro";
 import Description from "../pages/description.astro";
 
 interface Props {
@@ -29,11 +28,8 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
   </head>
   <body>
-    <NavBar />
-    <Carrusel />
-    <Description />
-    <AboutUs />
-    <Equipo />
-    <Footer />
+  <NavBar />
+  <slot /> <!-- AQUÍ se inyecta el contenido que pasas desde el archivo principal -->
+  <Footer />
   </body>
 </html>
