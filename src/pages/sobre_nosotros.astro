@@ -1,26 +1,13 @@
 ---
 // src/pages/sobre_nosotros.astro
 import Layout from "../layouts/Layout.astro";
+import QuienesSomos from "../sections/Quienes_somos.astro";
+import Valores from "../sections/Valores.astro";
+import Equipo from "../sections/Equipo.astro";
 ---
-
 <Layout title="Sobre Nosotros" description="Conoce a la familia QDev">
-  <div class="flex flex-col sm:w-full md:w-5/6 md:mx-auto lg:w-5/6 lg:mx-auto p-10 min-h-screen">
-    <h1 class="text-2xl sm:text-2xl md:text-2xl lg:text-5xl font-bold"> ¿Quiénes somos? </h1>
-    <p class="text-md text-justify sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7 mt-6">
-      En <span class="font-bold text-blue-500">HighQDev</span>, somos más que una empresa...
-    </p>
-    <div class="lg:flex lg:grid-cols-2 lg:gap-8 mt-8">
-      <div class="flex justify-center lg:justify-start lg:w-full">
-        <img src="https://i.ibb.co/NdqNwhdc/highqdev-logo.png" class="w-3/4" alt="highqdev-logo" />
-      </div>
-      <div class="flex flex-col lg:w-full">
-        <p class="text-lg text-justify sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7">
-          <span class="text-md font-bold text-black lg:text-3xl"> Un poco de historia </span>
-        </p>
-        <p class="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-7 mt-6">
-          <span class="font-bold">HighQDev </span> inició como un proyecto...
-        </p>
-      </div>
-    </div>
-  </div>
+  <QuienesSomos/>
+  <Valores/>
+  <Equipo/>
+
 </Layout>
