@@ -4,5 +4,7 @@
   --font-sans: 'Inter Variable', 'sans-serif';
   --color-green-custom: #7BD957;
   --color-gray-custom: #2C2C2C;
+  --color-gray-custom-light: #403F3F;
+  --color-gray-custom-dark: #1F1F21;
   --color-blue-custom: #3E5F94;
 }
