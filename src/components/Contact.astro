@@ -1,0 +1,126 @@
+<section class="flex justify-center items-center min-h-screen bg-white p-6">
+    <!-- Alerta flotante (toast) -->
+    <!-- Alerta flotante (toast) -->
+    <div id="toast" 
+        class="fixed top-6 left-1/2 transform -translate-x-1/2 opacity-0 pointer-events-none z-50 transition-opacity duration-500 ease-in-out">
+        <div id="toast-message" 
+        class="bg-green-600 text-white px-4 py-2 rounded shadow-lg min-w-[250px] text-center">
+        Mensaje enviado con éxito
+        </div>
+    </div>
+
+  
+    <div class="bg-gray-800 rounded-2xl shadow-xl p-10 w-full max-w-3xl">
+      <h2 class="text-3xl font-semibold text-green-custom text-center mb-8">
+        ¿Podemos ayudarte?
+      </h2>
+      <h1 class="text-1xl font-bold text-white text-center mb-0">
+        Le asesoramos y ayudamos a buscar la mejor solucion para su negocio
+      </h1>
+      <h1 class="text-1xl text-white text-center mb-8">
+        Llena la encuesta a continuacion y nos comuncaremos contigo dentro de 24 horas.
+      </h1>
+  
+      <form 
+        id="contact-form" 
+        class="bg-black shadow-lg rounded-xl p-8 space-y-5"
+
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Nombre" 
+            required 
+            class="w-full bg-white px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-custom"
+          />
+  
+          <input 
+            type="text" 
+            name="lastname" 
+            placeholder="Apellido" 
+            class="w-full bg-white px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-custom"
+          />
+        </div>
+  
+        <input 
+          type="tel" 
+          name="phone" 
+          placeholder="Teléfono" 
+          required 
+          class="w-full px-4 bg-white py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-custom"
+        />
+  
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Correo electrónico" 
+          required 
+          class="w-full px-4 bg-white py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-custom"
+        />
+  
+        <textarea 
+          name="message" 
+          placeholder="Tu mensaje" 
+          required 
+          rows="4"
+          class="w-full px-4 bg-white py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-custom"
+        ></textarea>
+  
+        <button 
+          type="submit"
+          class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300 font-semibold"
+        >
+        Enviar
+        </button>
+
+        
+      </form>
+    </div>
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const toast = document.getElementById("toast") as HTMLDivElement;
+    const toastMsg = document.getElementById("toast-message") as HTMLDivElement;
+
+    if (!form || !toast || !toastMsg) return;
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (response.ok) {
+            toastMsg.textContent = "✅ Mensaje enviado con éxito, nos pondremos en contacto en breve";
+            toastMsg.classList.remove("bg-red-600", "text-white");
+            toastMsg.classList.add("bg-green-600", "text-white");
+            form.reset();
+        } else {
+            toastMsg.textContent = "❌ Error al enviar el mensaje, si el problema persiste puedes contactarnos por nuestras redes sociales";
+            toastMsg.classList.remove("bg-green-600", "text-white");
+            toastMsg.classList.add("bg-red-600", "text-white");
+        }
+        } catch (err) {
+        toastMsg.textContent = "⚠️ Ocurrió un error inesperado, si el problema persiste puedes contactarnos por nuestras redes sociales";
+        toastMsg.classList.remove("bg-green-600", "text-white");
+        toastMsg.classList.add("bg-red-600", "text-white");
+        }
+
+        // Mostrar el toast
+        toast.style.opacity = "1";
+        toast.style.pointerEvents = "auto";
+
+        // Ocultarlo después de 4 segundos
+        setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.pointerEvents = "none";
+        }, 4000);
+    });
+    });
