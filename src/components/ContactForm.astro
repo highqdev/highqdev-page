@@ -1,0 +1,112 @@
+<section class="bg-gray-custom-light p-6 rounded-t-xl">
+  <h2 class="text-center text-2xl font-semibold text-green-custom mb-4">
+    ¿Podemos ayudarte?
+  </h2>
+  <p class="text-center text-white text-sm font-semibold">
+    Le asesoramos y ayudamos a buscar la mejor solución para su negocio.
+  </p>
+  <p class="text-center text-white text-sm">
+    Llena la encuesta a continuación y nos comunicaremos contigo dentro de 24 horas.
+  </p>
+  <form 
+    class="mt-10 bg-gray-custom-dark rounded-lg p-4 w-full max-w-4xl mx-auto md:p-8" 
+    method="post"
+    id="contact-form"
+  >
+    <div class="grid grid-flow-row gap-4 md:gap-6">
+      <div class="grid grid-flow-row gap-4 md:gap-6 md:grid-flow-col">
+        <div>
+          <label for="name" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Nombre</label>
+          <input type="text" name="name" id="name" class="bg-white px-2 py-1 rounded w-full" required/>
+        </div>
+        <div>
+          <label for="lastName" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Apellido</label>
+          <input type="text" name="lastName" id="lastName" class="bg-white px-2 py-1 rounded w-full" required/>
+        </div>
+      </div>
+      <div>
+        <label for="phone" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Teléfono</label>
+        <input type="number" name="phone" id="phone" class="bg-white px-2 py-1 rounded w-full" required/>
+      </div>
+      <div>
+        <label for="email" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Email</label>
+        <input type="email" name="email" id="email" class="bg-white px-2 py-1 rounded w-full" required/>
+      </div>
+      <div>
+        <label for="message" class="text-xs text-white block mb-1 md:mb-2">Mensaje</label>
+        <textarea name="message" id="message" class="bg-white px-2 py-1 rounded w-full"></textarea>
+      </div>
+      <div id="alert-message" />
+    </div>
+    <button 
+      type="submit"
+      class="block mt-10 mx-auto bg-green-custom text-white px-16 py-2 rounded-md cursor-pointer hover:bg-green-custom/80 hover:scale-105 transition"
+    >
+      Enviar
+    </button>
+  </form>
+</section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const alertMessage = document.getElementById("alert-message") as HTMLDivElement;
+
+  if (!form || !alertMessage) throw new Error("Missing form element");
+
+  const SUCCESS_ALERT = `
+    <div class="p-2 bg-green-custom/30 rounded-lg border border-green-custom text-center">
+      <h4 class="text-white font-semibold">
+        ¡Gracias por contactarnos!
+      </h4>
+      <p class="text-white text-sm">
+        Nos pondremos en contacto contigo dentro de 24 horas.
+      </p>
+    </div>
+  `;
+
+  const ERROR_ALERT = `
+    <div class="p-2 bg-red-custom/30 rounded-lg border border-red-custom text-center">
+      <h4 class="text-white font-semibold">
+        ¡Algo salió mal!
+      </h4>
+      <p class="text-white text-sm">
+        Por favor, intenta nuevamente.
+      </p>
+    </div>
+  `;
+
+  interface FormData {
+    name: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    message?: string;
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const target = event.currentTarget as HTMLFormElement;
+    if (!target) return;
+
+    const formData = new FormData(target);
+    const data = Object.fromEntries(formData.entries()) as unknown as FormData;
+
+    sendForm(data);
+  });
+
+  async function sendForm(form: FormData) {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) throw new Error("Failed to send form");
+
+      alertMessage.innerHTML = SUCCESS_ALERT;
+    } catch (error) {
+      alertMessage.innerHTML = ERROR_ALERT;
+    }
+  }
+</script>
