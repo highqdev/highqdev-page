@@ -35,7 +35,7 @@ const cardSize = "w-full aspect-[4/5] max-w-full";
 
 <article
   id={`${key}`}
-  class={`relative ${cardSize} overflow-hidden group snap-start rounded-xl`}
+  class={`relative ${cardSize} overflow-hidden group snap-start rounded-xl card-observer`}
   aria-labelledby={`card-${title}`}
 >
   <!-- Imagen de fondo -->
@@ -55,15 +55,14 @@ const cardSize = "w-full aspect-[4/5] max-w-full";
     </div>
 
     <!-- Contenido solo visible en hover -->
-    <div
-      class="w-full h-full p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out absolute top-0 left-0 bg-black/60"
-    >
-      <p class="h-full text-white text-sm sm:text-base overflow-y-auto">{text}</p>
+    <div class="w-full h-full p-5 opacity-100 group-hover:opacity-0 transition-opacity duration-300 ease-in-out absolute top-0 left-0 bg-black/60 sm:opacity-0 sm:group-hover:opacity-100">
+      <p class="h-full text-white text-base sm:text-lg overflow-y-auto">{text}</p>
     </div>
+    
 
     <!-- Línea en la parte superior al hacer hover -->
     <div
-      class="absolute top-0 left-0 w-full h-1 bg-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+      class="absolute top-0 left-0 w-full h-1 bg-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out mobile-visible:opacity-100"
     ></div>
   </div>
 </article>

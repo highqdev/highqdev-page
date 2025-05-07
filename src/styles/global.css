@@ -12,3 +12,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* styles.css o en tu archivo global */
+.mobile-visible .mobile-visible\:opacity-100 {
+  opacity: 1 !important;
+}
+
