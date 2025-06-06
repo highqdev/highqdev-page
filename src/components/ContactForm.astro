@@ -24,7 +24,16 @@
       </div>
       <div>
         <label for="phone" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Teléfono</label>
-        <input type="number" name="phone" id="phone" class="bg-white px-2 py-1 rounded w-full" required/>
+        <input 
+          type="tel" 
+          name="phone" 
+          id="phone" 
+          class="bg-white px-2 py-1 rounded w-full" 
+          pattern="[0-9]{10,}"
+          title="Por favor ingresa al menos 10 dígitos numéricos"
+          required
+        />
+        <span id="phone-error" class="text-red-500 text-xs hidden">El teléfono debe contener al menos 10 dígitos numéricos</span>
       </div>
       <div>
         <label for="email" class="text-xs text-white block mb-1 md:mb-2 after:content-['*'] after:text-red-500">Email</label>
@@ -48,8 +57,10 @@
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const alertMessage = document.getElementById("alert-message") as HTMLDivElement;
+  const phoneInput = document.getElementById("phone") as HTMLInputElement;
+  const phoneError = document.getElementById("phone-error") as HTMLSpanElement;
 
-  if (!form || !alertMessage) throw new Error("Missing form element");
+  if (!form || !alertMessage || !phoneInput || !phoneError) throw new Error("Missing form elements");
 
   const SUCCESS_ALERT = `
     <div class="p-2 bg-green-custom/30 rounded-lg border border-green-custom text-center">
@@ -81,30 +92,39 @@
     message?: string;
   }
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const target = event.currentTarget as HTMLFormElement;
-    if (!target) return;
-
-    const formData = new FormData(target);
-    const data = Object.fromEntries(formData.entries()) as unknown as FormData;
-
-    sendForm(data);
+  // Validación del teléfono en tiempo real
+  phoneInput.addEventListener("input", () => {
+    const isValid = /^[0-9]{10,}$/.test(phoneInput.value);
+    phoneError.classList.toggle("hidden", isValid);
+    phoneInput.setCustomValidity(isValid ? "" : "Por favor ingresa al menos 10 dígitos numéricos");
   });
 
-  async function sendForm(form: FormData) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Validación adicional del teléfono antes de enviar
+    const phoneValue = phoneInput.value;
+    if (!/^[0-9]{10,}$/.test(phoneValue)) {
+      phoneError.classList.remove("hidden");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries()) as unknown as FormData;
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(form),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) throw new Error("Failed to send form");
 
       alertMessage.innerHTML = SUCCESS_ALERT;
+      form.reset(); 
     } catch (error) {
       alertMessage.innerHTML = ERROR_ALERT;
+    
     }
-  }
+  });
 </script>

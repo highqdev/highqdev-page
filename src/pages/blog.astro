@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogGrid from '../components/blog/BlogGrid.astro';
+import FeaturedPost from '../components/blog/FeaturedPost.astro';
+import CategoryFilter from '../components/blog/CategoryFilter.astro';
+import { blogPosts } from '../data/blogPosts';
+
+// Obtener la categoría actual de los parámetros de la URL
+const currentCategory = Astro.url.searchParams.get('categoria') || 'all';
+
+// Separar posts destacados y regulares
+const featuredPost = blogPosts.find(post => post.featured);
+const regularPosts = blogPosts.filter(post => !post.featured);
+
+// Filtrar posts por categoría si se ha seleccionado una
+const filteredPosts = currentCategory === 'all' 
+    ? regularPosts 
+    : regularPosts.filter(post => post.categories.includes(currentCategory));
+
+// Para debugging
+console.log('Current category:', currentCategory);
+console.log('Total posts:', regularPosts.length);
+console.log('Filtered posts:', filteredPosts.length);
+console.log('Categories of first post:', filteredPosts[0]?.categories);
+---
+
+<Layout 
+    title="Blog de Tecnología - HighQDev"
+    description="Explora las últimas tendencias en desarrollo de software, innovación y tecnología con el equipo de HighQDev."
+>
+    <main class="container mx-auto px-4 py-8">
+        {featuredPost && <FeaturedPost post={featuredPost} />}
+        <CategoryFilter currentCategory={currentCategory} />
+        <BlogGrid posts={filteredPosts} />
+    </main>
+</Layout>
+
+<style>
+    main {
+        min-height: calc(100vh - 4rem);
+    }
+</style> 

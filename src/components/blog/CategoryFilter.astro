@@ -1,0 +1,87 @@
+---
+interface Props {
+    currentCategory: string;
+}
+
+const { currentCategory } = Astro.props;
+
+const categories = [
+    { id: 'all', name: 'Todos' },
+    { id: 'ai', name: 'Inteligencia Artificial' },
+    { id: 'networking', name: 'Networking' },
+    { id: 'eventos', name: 'Eventos' },
+    { id: 'ciencia', name: 'Ciencia' },
+    { id: 'desarrollo', name: 'Desarrollo' },
+    { id: 'cloud', name: 'Cloud Computing' }
+];
+---
+
+<div class="w-full bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 mb-12">
+    <nav class="flex flex-wrap gap-3 justify-center" aria-label="Filtro de categorías">
+        {categories.map((category) => (
+            <button
+                type="button"
+                data-category={category.id}
+                class={`category-btn px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    ${currentCategory === category.id
+                        ? 'bg-green-custom text-white shadow-lg shadow-green-custom/20'
+                        : 'bg-gray-700/50 text-gray-300 hover:text-white'
+                    }`}
+            >
+                {category.name}
+            </button>
+        ))}
+    </nav>
+</div>
+
+<script>
+    function updateButtonStyles(selectedButton: HTMLButtonElement) {
+        // Primero removemos las clases activas de todos los botones
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('bg-green-custom', 'text-white', 'shadow-lg', 'shadow-green-custom/20');
+            btn.classList.add('bg-gray-700/50', 'text-gray-300');
+        });
+
+        // Aplicamos las clases activas al botón seleccionado
+        selectedButton.classList.remove('bg-gray-700/50', 'text-gray-300');
+        selectedButton.classList.add('bg-green-custom', 'text-white', 'shadow-lg', 'shadow-green-custom/20');
+    }
+
+    // Función para filtrar los posts
+    function handleCategoryClick(e: MouseEvent) {
+        const button = e.target as HTMLButtonElement;
+        if (!button.matches('.category-btn')) return;
+
+        // Actualizar estilos de botones
+        updateButtonStyles(button);
+
+        // Obtener la categoría seleccionada
+        const category = button.dataset.category || 'all';
+
+        // Filtrar artículos (excluyendo el artículo destacado)
+        document.querySelectorAll('article:not(.featured-post)').forEach((article: Element) => {
+            const htmlArticle = article as HTMLElement;
+            const articleCategories = htmlArticle.dataset.categories || '';
+            const categories = articleCategories ? articleCategories.split(',') : [];
+            if (category === 'all' || categories.includes(category)) {
+                htmlArticle.style.display = '';
+            } else {
+                htmlArticle.style.display = 'none';
+            }
+        });
+
+        // Actualizar URL sin recargar
+        const url = new URL(window.location.href);
+        if (category === 'all') {
+            url.searchParams.delete('categoria');
+        } else {
+            url.searchParams.set('categoria', category);
+        }
+        history.pushState({}, '', url);
+    }
+
+    // Agregar event listeners a los botones
+    document.querySelectorAll('.category-btn').forEach((button: Element) => {
+        (button as HTMLButtonElement).addEventListener('click', handleCategoryClick as EventListener);
+    });
+</script> 
