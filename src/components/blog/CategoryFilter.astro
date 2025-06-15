@@ -36,13 +36,13 @@ const categories = [
 
 <script>
     function updateButtonStyles(selectedButton: HTMLButtonElement) {
-        // Primero removemos las clases activas de todos los botones
+     
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.remove('bg-green-custom', 'text-white', 'shadow-lg', 'shadow-green-custom/20');
             btn.classList.add('bg-gray-700/50', 'text-gray-300');
         });
 
-        // Aplicamos las clases activas al botón seleccionado
+ 
         selectedButton.classList.remove('bg-gray-700/50', 'text-gray-300');
         selectedButton.classList.add('bg-green-custom', 'text-white', 'shadow-lg', 'shadow-green-custom/20');
     }
